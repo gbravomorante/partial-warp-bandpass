@@ -70,6 +70,28 @@ pip install -e ".[examples]"
 python examples/synthetic_age_signal.py
 ```
 
+## Re-running the 2021 analysis on the published data
+
+The landmark data of the paper are public on [OSF](https://osf.io/867md/). This script downloads
+them (checksummed, not redistributed here), maps every block to its specimen, and runs the band
+search for each side of the male sample:
+
+```bash
+python examples/reproduce_ijlm2021.py
+```
+
+| Side | Surfaces | Under 50 | PW 1–7 r (this code) | Best band | Published PW 1–7 r |
+|---|---|---|---|---|---|
+| Left | 206 | 138 | −0.527 | PW 1–8, −0.537 | −0.51 / −0.521 |
+| Right | 215 | 143 | −0.460 | PW 1–8, −0.476 | −0.544 / −0.648 |
+
+The left side reproduces the published result, and both sides recover the paper's main finding:
+the age signal peaks in a lowpass band of the first seven to eight partial warps. The right side
+comes out weaker than published. In this re-implementation the 0.05 squared-Procrustes cut
+removes no surface, whereas the original analysis excluded about 15% of the sample, so the
+original outlier screening (and its semilandmark processing) evidently differed in ways the
+published files do not record. The numbers above are reported as they come out.
+
 ## Tests
 
 ```bash
