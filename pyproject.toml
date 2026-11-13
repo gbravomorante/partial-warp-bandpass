@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "partial-warp-bandpass"
+version = "0.1.0"
+description = "Bandpass filtering of thin-plate spline partial-warp bending energy for 3D surface semilandmarks"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Guillermo Bravo Morante" }]
+requires-python = ">=3.10"
+keywords = [
+    "geometric morphometrics", "thin-plate spline", "bending energy", "partial warps",
+    "surface semilandmarks", "age estimation", "pubic symphysis", "forensic anthropology",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+examples = ["matplotlib>=3.8"]
+
+[project.urls]
+Homepage = "https://gbravomorante.dev"
+Source = "https://github.com/gbravomorante/partial-warp-bandpass"
+Paper = "https://doi.org/10.1007/s00414-021-02555-6"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pwbandpass"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B905"]
